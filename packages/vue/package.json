@@ -1,0 +1,60 @@
+{
+  "name": "@ivem/kit-vue",
+  "version": "0.0.1",
+  "description": "Vue composables for IOST blockchain",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivemlabs/ivem-kit",
+    "directory": "packages/vue"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "keywords": [
+    "iost",
+    "vue",
+    "composables",
+    "blockchain"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@ivem/kit": "workspace:*"
+  },
+  "devDependencies": {
+    "@tanstack/vue-query": "^5.90.2",
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0",
+    "vue": "^3.3.0"
+  },
+  "peerDependencies": {
+    "@tanstack/vue-query": ">=5.0.0",
+    "vue": ">=3.0.0",
+    "typescript": ">=5.0.4"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "packageManager": "pnpm@10.17.0"
+}

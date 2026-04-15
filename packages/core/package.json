@@ -1,0 +1,62 @@
+{
+  "name": "@ivem/kit",
+  "version": "0.0.1",
+  "description": "VanillaJS library for IOST blockchain",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivemlabs/ivem-kit",
+    "directory": "packages/core"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./actions": {
+      "types": "./dist/actions/index.d.ts",
+      "import": "./dist/actions/index.js",
+      "require": "./dist/actions/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "keywords": [
+    "iost",
+    "blockchain",
+    "wallet"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "eventemitter3": "^5.0.1",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {
+    "@ivem/core": ">=0.0.1",
+    "typescript": ">=5.0.4"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "packageManager": "pnpm@10.17.0"
+}

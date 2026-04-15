@@ -1,0 +1,13 @@
+import { defineConfig } from "tsup";
+
+export default defineConfig({
+  entry: {
+    index: "src/index.ts",
+    "actions/index": "src/actions/index.ts",
+  },
+  format: ["esm", "cjs"],
+  dts: true,
+  clean: true,
+  splitting: false,
+  treeshake: true,
+});

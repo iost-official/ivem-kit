@@ -1,0 +1,63 @@
+{
+  "name": "@ivem/kit-react",
+  "version": "0.0.1",
+  "description": "React hooks for IOST blockchain",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivemlabs/ivem-kit",
+    "directory": "packages/react"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "keywords": [
+    "iost",
+    "react",
+    "hooks",
+    "blockchain"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@ivem/kit": "workspace:*",
+    "use-sync-external-store": "^1.2.0"
+  },
+  "devDependencies": {
+    "@tanstack/react-query": "^5.90.2",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/use-sync-external-store": "^0.0.6",
+    "react": "^18.2.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": ">=5.0.0",
+    "react": ">=18.0.0",
+    "typescript": ">=5.0.4"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "packageManager": "pnpm@10.17.0"
+}

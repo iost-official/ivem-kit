@@ -4,7 +4,7 @@
   "description": "React hooks for IOST blockchain",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivemlabs/ivem-kit",
+    "url": "https://github.com/iost-official/ivem-kit",
     "directory": "packages/react"
   },
   "type": "module",

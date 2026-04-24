@@ -1,0 +1,31 @@
+# useConfig
+
+## Usage
+
+```tsx
+import { useConfig } from '@ivem/kit-react'
+
+const config = useConfig()
+```
+
+## Parameters
+
+- None
+
+## Return Type
+
+- `Config`
+
+## Examples
+
+```tsx
+function DebugConfig() {
+  const config = useConfig()
+  return <pre>{JSON.stringify(config.state, null, 2)}</pre>
+}
+```
+
+## Related
+
+- [useIvemConfig (Vue)](/vue/composables/useIvemConfig)
+- [createConfig (Core)](/core/create-config)

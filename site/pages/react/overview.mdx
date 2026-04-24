@@ -1,0 +1,48 @@
+# React
+
+`@ivem/kit-react` provides React hooks for connection state, signing, transfers, contract calls, and receipt polling. The recommended app structure is `IvemProvider + hooks`.
+
+Async hooks are powered by TanStack Query (`@tanstack/react-query`) via `IvemProvider`.
+
+- `useAccount`
+- `useConnect`
+- `useReconnect`
+- `useDisconnect`
+- `useChainId`
+- `useSignMessage`
+- `useSendTransaction`
+- `useWriteContract`
+- `useWaitForTransactionReceipt`
+- `useCallContract`
+
+Detailed API docs:
+
+- [Hooks Overview](/react/hooks)
+- [useConfig](/react/hooks/useConfig)
+- [useAccount](/react/hooks/useAccount)
+- [useConnect](/react/hooks/useConnect)
+- [useReconnect](/react/hooks/useReconnect)
+- [useDisconnect](/react/hooks/useDisconnect)
+- [useChainId](/react/hooks/useChainId)
+- [useSignMessage](/react/hooks/useSignMessage)
+- [useSendTransaction](/react/hooks/useSendTransaction)
+- [useWriteContract](/react/hooks/useWriteContract)
+- [useWaitForTransactionReceipt](/react/hooks/useWaitForTransactionReceipt)
+- [useCallContract](/react/hooks/useCallContract)
+
+```tsx
+import { useAccount, useConnect, useReconnect } from '@ivem/kit-react'
+
+function Header() {
+  const account = useAccount()
+  const connect = useConnect()
+  const reconnect = useReconnect()
+
+  return (
+    <div>
+      <button onClick={() => reconnect.mutate()}>Reconnect</button>
+      {!account.isConnected && <button onClick={() => connect.mutate()}>Connect</button>}
+    </div>
+  )
+}
+```

@@ -1,0 +1,55 @@
+# waitForTransactionReceipt
+
+## Environment Imports
+
+```ts
+import { waitForTransactionReceipt } from '@ivem/kit'
+import { useWaitForTransactionReceipt } from '@ivem/kit-react'
+import { useWaitForTransactionReceipt } from '@ivem/kit-vue'
+```
+
+## Usage
+
+```ts
+import { sendTransaction, waitForTransactionReceipt } from '@ivem/kit'
+
+const tx = await sendTransaction(config, {
+  to: 'receiver_account',
+  amount: '1.00000000',
+})
+
+const receipt = await waitForTransactionReceipt(config, {
+  hash: tx.hash,
+  stage: 'irreversible',
+})
+```
+
+## Parameters
+
+- `config: Config`
+- `parameters: { hash: string; retryCount?: number; retryDelay?: number; timeout?: number; stage?: "executed" | "irreversible" }`
+
+## Return Type
+
+- `Promise<TxReceipt>`
+
+## Examples
+
+```ts
+const receipt = await waitForTransactionReceipt(config, {
+  hash: tx.hash,
+  timeout: 90_000,
+  stage: 'executed',
+})
+
+console.log(receipt.status_code)
+```
+
+`stage: "executed"` is the fast default and resolves as soon as `transaction.tx_receipt` becomes available.
+
+`stage: "irreversible"` waits for the final irreversible receipt.
+
+## Related
+
+- [useWaitForTransactionReceipt (React)](/react/hooks/useWaitForTransactionReceipt)
+- [useWaitForTransactionReceipt (Vue)](/vue/composables/useWaitForTransactionReceipt)

@@ -1,0 +1,28 @@
+# Getting Started
+
+Use `@ivem/kit` when you want direct access to config state and wallet actions without React or Vue.
+
+## Create Config
+
+```ts
+import { createConfig, iwallet, mainnet } from '@ivem/kit'
+
+export const config = createConfig({
+  chains: [mainnet],
+  connector: iwallet(),
+})
+```
+
+## Connect and Read State
+
+```ts
+import { connect, getAccount, getChainId } from '@ivem/kit'
+import { config } from './config'
+
+await connect(config)
+
+const account = getAccount(config)
+const chainId = getChainId(config)
+
+console.log(account.address, chainId)
+```

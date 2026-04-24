@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "pnpm -r --parallel --filter \"./packages/**\" run dev",
-    "build": "pnpm -r --filter \"./packages/**\" run build"
+    "build": "pnpm -r --filter \"./packages/**\" run build",
+    "docs:dev": "pnpm --filter site dev",
+    "docs:build": "pnpm --filter site build",
+    "docs:preview": "pnpm --filter site preview"
   },
   "license": "MIT",
   "packageManager": "pnpm@10.17.0"

@@ -1,0 +1,52 @@
+# useCallContract
+
+> Compatibility alias. Prefer `useWriteContract`.
+
+## Usage
+
+```ts
+import { useCallContract } from '@ivem/kit-vue'
+
+const callContract = useCallContract()
+await callContract.mutateAsync({
+  contract: 'token.iost',
+  action: 'transfer',
+  args: ['iost', 'alice', 'bob', '1.00000000', 'memo'],
+})
+```
+
+## Parameters
+
+Call params:
+
+- `contract: string`
+- `action: string`
+- `args: any[]`
+- `account?: string`
+- `gasRatio?: number`
+- `gasLimit?: number`
+
+## Return Type
+
+- `mutate(params, options?) => void`
+- `mutateAsync(params) => Promise<{ hash: string }>`
+- `isPending: Ref<boolean>`
+- `error: Ref<Error | null>`
+- `data: Ref<{ hash: string } | null>`
+
+## Examples
+
+```ts
+const tx = await callContract.mutateAsync({
+  contract: 'token.iost',
+  action: 'transfer',
+  args: ['iost', 'alice', 'bob', '1.00000000', 'memo'],
+  gasRatio: 1,
+  gasLimit: 2000000,
+})
+```
+
+## Related
+
+- [useWriteContract (Vue)](/vue/composables/useWriteContract)
+- [writeContract (Core)](/core/actions/writeContract)

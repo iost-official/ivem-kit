@@ -1,0 +1,33 @@
+# useConnect
+
+## Usage
+
+```ts
+import { useConnect } from '@ivem/kit-vue'
+
+const connect = useConnect()
+await connect.mutateAsync()
+```
+
+## Parameters
+
+- `parameters.config?: Config`
+- `parameters.mutation?: Omit<UseMutationOptions<...>, "mutationFn">`
+
+## Return Type
+
+- `mutate(params?, options?) => void`
+- `mutateAsync(params?) => Promise<{ accounts: readonly string[]; chainId: string }>`
+- `isPending: Ref<boolean>`
+- `error: Ref<Error | null>`
+
+## Examples
+
+```ts
+await connect.mutateAsync()
+```
+
+## Related
+
+- [connect (Core)](/core/actions/connect)
+- [useConnect (React)](/react/hooks/useConnect)

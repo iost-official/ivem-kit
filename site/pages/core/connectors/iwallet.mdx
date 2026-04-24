@@ -1,0 +1,24 @@
+# iWallet Connector
+
+`iwallet()` uses `window.IWalletJS` by default and is compatible with `iost-iwallet-pro` request methods:
+
+- `connect`
+- `disconnect`
+- `accounts`
+- `chainId` (preferred)
+- `network` (fallback)
+- `signMessage`
+- `sendTransaction`
+- `callContract`
+
+## Custom Provider Injection
+
+```ts
+import { iwallet } from '@ivem/kit'
+
+const connector = iwallet({
+  getProvider: () => window.IWalletJS,
+})
+```
+
+This is useful for tests or multi-provider injection environments.

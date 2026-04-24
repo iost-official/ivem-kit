@@ -1,0 +1,50 @@
+# useWriteContract
+
+## Usage
+
+```tsx
+import { useWriteContract } from '@ivem/kit-react'
+
+const writeContract = useWriteContract()
+await writeContract.mutateAsync({
+  contract: 'token.iost',
+  action: 'transfer',
+  args: ['iost', 'alice', 'bob', '1.00000000', 'memo'],
+})
+```
+
+## Parameters
+
+Write params:
+
+- `contract: string`
+- `action: string`
+- `args: any[]`
+- `gasRatio?: number`
+- `gasLimit?: number`
+- `approves?: Array<{ token: string; amount: string }>`
+
+## Return Type
+
+- `mutate(params, options?) => void`
+- `mutateAsync(params) => Promise<{ hash: string }>`
+- `isPending: boolean`
+- `error: Error | null`
+- `data: { hash: string } | null`
+
+## Examples
+
+```tsx
+const tx = await writeContract.mutateAsync({
+  contract: 'token.iost',
+  action: 'transfer',
+  args: ['iost', 'alice', 'bob', '1.00000000', 'memo'],
+  gasRatio: 1,
+  gasLimit: 2000000,
+})
+```
+
+## Related
+
+- [writeContract (Core)](/core/actions/writeContract)
+- [useWriteContract (Vue)](/vue/composables/useWriteContract)

@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Keep normal docs text readable on landing pages. */
+.vocs_Content {
+  max-width: 76ch;
+  margin-left: auto;
+  margin-right: auto;
+}

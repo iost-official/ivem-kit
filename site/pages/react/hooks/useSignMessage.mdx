@@ -1,0 +1,39 @@
+# useSignMessage
+
+## Usage
+
+```tsx
+import { useSignMessage } from '@ivem/kit-react'
+
+const signMessage = useSignMessage()
+await signMessage.mutateAsync({ message: 'hello iost' })
+```
+
+## Parameters
+
+- `parameters.config?: Config`
+- `parameters.mutation?: Omit<UseMutationOptions<...>, "mutationFn">`
+
+Call params:
+
+- `message: string | object`
+- `account?: string`
+
+## Return Type
+
+- `mutate(params, options?) => void`
+- `mutateAsync(params) => Promise<unknown>`
+- `isPending: boolean`
+- `error: Error | null`
+- `data: unknown | null`
+
+## Examples
+
+```tsx
+await signMessage.mutateAsync({ message: { type: 'login', nonce: '123' } })
+```
+
+## Related
+
+- [signMessage (Core)](/core/actions/signMessage)
+- [useSignMessage (Vue)](/vue/composables/useSignMessage)

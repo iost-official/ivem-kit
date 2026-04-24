@@ -1,0 +1,53 @@
+# Getting Started
+
+Start by creating a shared config, then mount `IvemProvider` at the app root.
+
+## Create Config
+
+```ts
+import { createConfig, iwallet, mainnet } from '@ivem/kit-react'
+
+export const config = createConfig({
+  chains: [mainnet],
+  connector: iwallet(),
+})
+```
+
+Use `ssr: true` in Next.js or other SSR setups to skip persisted-state hydration during the first render.
+
+`testnet` is still exported for compatibility, but as of 2026-03-11 the public IOST testnet is unavailable and should not be used in new setups.
+
+## Mount the Provider
+
+```tsx
+import { QueryClient } from '@tanstack/react-query'
+import { IvemProvider, useAccount, useConnect, useDisconnect } from '@ivem/kit-react'
+import { config } from './config'
+
+const queryClient = new QueryClient()
+
+function App() {
+  return (
+    <IvemProvider config={config} queryClient={queryClient}>
+      <Page />
+    </IvemProvider>
+  )
+}
+
+function Page() {
+  const account = useAccount()
+  const connect = useConnect()
+  const disconnect = useDisconnect()
+
+  if (!account.isConnected) {
+    return <button onClick={() => connect.mutate()}>Connect</button>
+  }
+
+  return (
+    <div>
+      <p>{account.address}</p>
+      <button onClick={() => disconnect.mutate()}>Disconnect</button>
+    </div>
+  )
+}
+```

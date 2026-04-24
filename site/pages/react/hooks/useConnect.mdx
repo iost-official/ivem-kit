@@ -1,0 +1,36 @@
+# useConnect
+
+## Usage
+
+```tsx
+import { useConnect } from '@ivem/kit-react'
+
+const connect = useConnect()
+await connect.mutateAsync()
+```
+
+## Parameters
+
+- `parameters.config?: Config`
+- `parameters.mutation?: Omit<UseMutationOptions<...>, "mutationFn">`
+
+## Return Type
+
+- `mutate(params?, options?) => void`
+- `mutateAsync(params?) => Promise<{ accounts: readonly string[]; chainId: string }>`
+- `isPending: boolean`
+- `error: Error | null`
+
+## Examples
+
+```tsx
+function ConnectButton() {
+  const connect = useConnect()
+  return <button disabled={connect.isPending} onClick={() => connect.mutate()}>Connect</button>
+}
+```
+
+## Related
+
+- [connect (Core)](/core/actions/connect)
+- [useConnect (Vue)](/vue/composables/useConnect)

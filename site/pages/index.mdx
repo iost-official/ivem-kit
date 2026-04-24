@@ -1,0 +1,121 @@
+---
+title: Ivem Kit · IOST App Toolkit
+content:
+  width: 100%
+layout: landing
+logo: false
+outline: false
+---
+
+import { Callout, HomePage } from 'vocs/components'
+
+<HomePage.Root>
+  <HomePage.Tagline>Ivem Kit</HomePage.Tagline>
+  <HomePage.Description>
+    A focused IOST toolkit with one shared core package, React hooks, Vue composables, and an iWallet connector.
+  </HomePage.Description>
+
+  <HomePage.Buttons>
+    <HomePage.Button href="/react/getting-started" variant="accent">
+      Get started
+    </HomePage.Button>
+    <HomePage.Button href="/core/getting-started">Core docs</HomePage.Button>
+    <HomePage.Button href="/vue/getting-started">Vue docs</HomePage.Button>
+  </HomePage.Buttons>
+</HomePage.Root>
+
+## Why
+
+<article className="vocs_Content" data-v-content>
+
+- **One toolkit, three entry points** Use the same config and connector model across `@ivem/kit`, `@ivem/kit-react`, and `@ivem/kit-vue`.
+- **Wallet-ready flows** Cover connect, reconnect, disconnect, signing, transfers, contract calls, and receipt polling.
+- **Framework-friendly APIs** Pick hooks, composables, or direct actions without changing the underlying wallet setup.
+- **IOST-specific focus** The docs and API surface stay tight around iWallet-based IOST application flows.
+
+## Installation
+
+### React
+
+:::code-group
+
+```bash [pnpm]
+pnpm add @ivem/core @ivem/kit-react @tanstack/react-query
+```
+
+```bash [npm]
+npm i @ivem/core @ivem/kit-react @tanstack/react-query
+```
+
+```bash [yarn]
+yarn add @ivem/core @ivem/kit-react @tanstack/react-query
+```
+
+:::
+
+### Vue
+
+:::code-group
+
+```bash [pnpm]
+pnpm add @ivem/core @ivem/kit-vue @tanstack/vue-query
+```
+
+```bash [npm]
+npm i @ivem/core @ivem/kit-vue @tanstack/vue-query
+```
+
+```bash [yarn]
+yarn add @ivem/core @ivem/kit-vue @tanstack/vue-query
+```
+
+:::
+
+### Core
+
+:::code-group
+
+```bash [pnpm]
+pnpm add @ivem/core @ivem/kit
+```
+
+```bash [npm]
+npm i @ivem/core @ivem/kit
+```
+
+```bash [yarn]
+yarn add @ivem/core @ivem/kit
+```
+:::
+
+## Quick Example
+
+```tsx
+import { createConfig, iwallet, mainnet, IvemProvider, useAccount, useConnect } from '@ivem/kit-react'
+
+const config = createConfig({
+  chains: [mainnet],
+  connector: iwallet(),
+})
+
+function WalletStatus() {
+  const account = useAccount()
+  const connect = useConnect()
+
+  if (!account.isConnected) {
+    return <button onClick={() => connect.mutate()}>Connect wallet</button>
+  }
+
+  return <div>Connected: {account.address}</div>
+}
+
+export function App() {
+  return (
+    <IvemProvider config={config}>
+      <WalletStatus />
+    </IvemProvider>
+  )
+}
+```
+
+</article>

@@ -1,0 +1,55 @@
+# writeContract
+
+## Environment Imports
+
+```ts
+import { writeContract } from '@ivem/kit'
+import { useWriteContract } from '@ivem/kit-react'
+import { useWriteContract } from '@ivem/kit-vue'
+```
+
+## Usage
+
+```ts
+import { writeContract } from '@ivem/kit'
+
+const result = await writeContract(config, {
+  contract: 'token.iost',
+  action: 'transfer',
+  args: ['iost', 'alice', 'bob', '1.00000000', 'memo'],
+  gasRatio: 1,
+  gasLimit: 2000000,
+})
+```
+
+## Parameters
+
+- `config: Config`
+- `parameters: {`
+- `  contract: string`
+- `  action: string`
+- `  args: any[]`
+- `  gasRatio?: number`
+- `  gasLimit?: number`
+- `  approves?: Array<{ token: string; amount: string }>`
+- `}`
+
+## Return Type
+
+- `Promise<{ hash: string }>`
+
+## Examples
+
+```ts
+const { hash } = await writeContract(config, {
+  contract: 'token.iost',
+  action: 'balanceOf',
+  args: ['iost', 'alice'],
+})
+```
+
+## Related
+
+- [useWriteContract (React)](/react/hooks/useWriteContract)
+- [useWriteContract (Vue)](/vue/composables/useWriteContract)
+- [callContract (compatibility)](/core/actions/callContract)

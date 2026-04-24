@@ -1,0 +1,52 @@
+# useCallContract
+
+> Compatibility alias. Prefer `useWriteContract`.
+
+## Usage
+
+```tsx
+import { useCallContract } from '@ivem/kit-react'
+
+const callContract = useCallContract()
+await callContract.mutateAsync({
+  contract: 'token.iost',
+  action: 'transfer',
+  args: ['iost', 'alice', 'bob', '1.00000000', 'memo'],
+})
+```
+
+## Parameters
+
+Call params:
+
+- `contract: string`
+- `action: string`
+- `args: any[]`
+- `account?: string`
+- `gasRatio?: number`
+- `gasLimit?: number`
+
+## Return Type
+
+- `mutate(params, options?) => void`
+- `mutateAsync(params) => Promise<{ hash: string }>`
+- `isPending: boolean`
+- `error: Error | null`
+- `data: { hash: string } | null`
+
+## Examples
+
+```tsx
+const tx = await callContract.mutateAsync({
+  contract: 'token.iost',
+  action: 'transfer',
+  args: ['iost', 'alice', 'bob', '1.00000000', 'memo'],
+  gasRatio: 1,
+  gasLimit: 2000000,
+})
+```
+
+## Related
+
+- [useWriteContract (React)](/react/hooks/useWriteContract)
+- [writeContract (Core)](/core/actions/writeContract)

@@ -1,0 +1,39 @@
+# useSendTransaction
+
+## Usage
+
+```ts
+import { useSendTransaction } from '@ivem/kit-vue'
+
+const sendTransaction = useSendTransaction()
+await sendTransaction.mutateAsync({ to: 'receiver_account', amount: '1.00000000', memo: 'from Ivem Kit' })
+```
+
+## Parameters
+
+Call params:
+
+- `to: string`
+- `amount: string`
+- `memo?: string`
+- `from?: string`
+
+## Return Type
+
+- `mutate(params, options?) => void`
+- `mutateAsync(params) => Promise<{ hash: string }>`
+- `isPending: Ref<boolean>`
+- `error: Ref<Error | null>`
+- `data: Ref<{ hash: string } | null>`
+
+## Examples
+
+```ts
+const tx = await sendTransaction.mutateAsync({ to: 'receiver', amount: '1.00000000' })
+console.log(tx.hash)
+```
+
+## Related
+
+- [sendTransaction (Core)](/core/actions/sendTransaction)
+- [useSendTransaction (React)](/react/hooks/useSendTransaction)

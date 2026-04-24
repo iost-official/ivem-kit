@@ -1,0 +1,32 @@
+# useReconnect
+
+## Usage
+
+```ts
+import { useReconnect } from '@ivem/kit-vue'
+
+const reconnect = useReconnect()
+await reconnect.mutateAsync()
+```
+
+## Parameters
+
+- None
+
+## Return Type
+
+- `mutate() => void`
+- `mutateAsync() => Promise<{ accounts: readonly string[]; chainId: string } | null>`
+- `isPending: Ref<boolean>`
+- `error: Ref<Error | null>`
+
+## Examples
+
+```ts
+onMounted(() => reconnect.mutate())
+```
+
+## Related
+
+- [reconnect (Core)](/core/actions/reconnect)
+- [useReconnect (React)](/react/hooks/useReconnect)

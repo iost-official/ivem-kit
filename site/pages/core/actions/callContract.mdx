@@ -1,0 +1,57 @@
+# callContract
+
+> Compatibility alias. Prefer `writeContract`.
+
+## Environment Imports
+
+```ts
+import { callContract } from '@ivem/kit'
+import { useCallContract } from '@ivem/kit-react'
+import { useCallContract } from '@ivem/kit-vue'
+```
+
+## Usage
+
+```ts
+import { callContract } from '@ivem/kit'
+
+const result = await callContract(config, {
+  contract: 'token.iost',
+  action: 'transfer',
+  args: ['iost', 'alice', 'bob', '1.00000000', 'memo'],
+  gasRatio: 1,
+  gasLimit: 2000000,
+})
+```
+
+## Parameters
+
+- `config: Config`
+- `parameters: {`
+- `  contract: string`
+- `  action: string`
+- `  args: any[]`
+- `  account?: string`
+- `  gasRatio?: number`
+- `  gasLimit?: number`
+- `}`
+
+## Return Type
+
+- `Promise<{ hash: string }>`
+
+## Examples
+
+```ts
+const { hash } = await callContract(config, {
+  contract: 'token.iost',
+  action: 'transfer',
+  args: ['iost', 'alice', 'bob', '1.00000000', 'memo'],
+})
+```
+
+## Related
+
+- [writeContract (Core)](/core/actions/writeContract)
+- [useWriteContract (React)](/react/hooks/useWriteContract)
+- [useWriteContract (Vue)](/vue/composables/useWriteContract)

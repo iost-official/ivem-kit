@@ -1,0 +1,35 @@
+# Vue Composables
+
+## Usage
+
+```ts
+import { useAccount, useConnect } from '@ivem/kit-vue'
+```
+
+## Parameters
+
+Composables read config from `IvemPlugin` context.
+Mutation/composable state is managed by TanStack Query.
+
+## Return Type
+
+State values are exposed as Vue `Ref` wrappers when applicable.
+
+## Examples
+
+- [useIvemConfig](/vue/composables/useIvemConfig)
+- [useAccount](/vue/composables/useAccount)
+- [useConnect](/vue/composables/useConnect)
+- [useReconnect](/vue/composables/useReconnect)
+- [useDisconnect](/vue/composables/useDisconnect)
+- [useChainId](/vue/composables/useChainId)
+- [useSignMessage](/vue/composables/useSignMessage)
+- [useSendTransaction](/vue/composables/useSendTransaction)
+- [useWriteContract](/vue/composables/useWriteContract)
+- [useWaitForTransactionReceipt](/vue/composables/useWaitForTransactionReceipt)
+- [useCallContract](/vue/composables/useCallContract)
+
+## Related
+
+- [React Hooks](/react/hooks)
+- [Core Actions](/core/actions)

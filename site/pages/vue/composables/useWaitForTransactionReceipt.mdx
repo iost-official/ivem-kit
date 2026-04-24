@@ -1,0 +1,48 @@
+# useWaitForTransactionReceipt
+
+## Usage
+
+```ts
+import { computed } from 'vue'
+import { useSendTransaction, useWaitForTransactionReceipt } from '@ivem/kit-vue'
+
+const sendTransaction = useSendTransaction()
+const { data: receipt, isLoading } = useWaitForTransactionReceipt({
+  hash: computed(() => sendTransaction.data.value?.hash),
+})
+
+await sendTransaction.mutateAsync({ to: 'receiver_account', amount: '1.00000000' })
+```
+
+## Parameters
+
+- `hash?: MaybeRef<string | undefined>`
+- `retryCount?: MaybeRef<number | undefined>`
+- `retryDelay?: MaybeRef<number | undefined>`
+- `timeout?: MaybeRef<number | undefined>`
+- `enabled?: MaybeRef<boolean | undefined>`
+
+## Return Type
+
+- `data: Ref<TxReceipt | undefined>`
+- `error: Ref<Error | null>`
+- `isLoading: Ref<boolean>`
+- `isSuccess: Ref<boolean>`
+- `isError: Ref<boolean>`
+- `refetch: () => Promise<unknown>`
+
+## Examples
+
+```ts
+const { data: receipt } = useWaitForTransactionReceipt({
+  hash: computed(() => sendTransaction.data.value?.hash),
+  enabled: computed(() => Boolean(sendTransaction.data.value?.hash)),
+})
+
+console.log(receipt.value?.status_code)
+```
+
+## Related
+
+- [waitForTransactionReceipt (Core)](/core/actions/waitForTransactionReceipt)
+- [useWaitForTransactionReceipt (React)](/react/hooks/useWaitForTransactionReceipt)

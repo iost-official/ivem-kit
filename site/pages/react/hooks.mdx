@@ -1,0 +1,39 @@
+# React Hooks
+
+The React package exposes hooks for wallet connection, chain state, signing, transactions, and contract calls.
+
+## Prerequisite
+
+```tsx
+import { QueryClient } from '@tanstack/react-query'
+import { createConfig, iwallet, mainnet, IvemProvider } from '@ivem/kit-react'
+
+const config = createConfig({
+  chains: [mainnet],
+  connector: iwallet(),
+})
+
+const queryClient = new QueryClient()
+
+export function App() {
+  return (
+    <IvemProvider config={config} queryClient={queryClient}>
+      {/* your app */}
+    </IvemProvider>
+  )
+}
+```
+
+## Hook List
+
+- [useConfig](/react/hooks/useConfig)
+- [useAccount](/react/hooks/useAccount)
+- [useConnect](/react/hooks/useConnect)
+- [useReconnect](/react/hooks/useReconnect)
+- [useDisconnect](/react/hooks/useDisconnect)
+- [useChainId](/react/hooks/useChainId)
+- [useSignMessage](/react/hooks/useSignMessage)
+- [useSendTransaction](/react/hooks/useSendTransaction)
+- [useWriteContract](/react/hooks/useWriteContract)
+- [useWaitForTransactionReceipt](/react/hooks/useWaitForTransactionReceipt)
+- [useCallContract](/react/hooks/useCallContract)

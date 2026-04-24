@@ -1,0 +1,39 @@
+# signMessage
+
+## Environment Imports
+
+```ts
+import { signMessage } from '@ivem/kit'
+import { useSignMessage } from '@ivem/kit-react'
+import { useSignMessage } from '@ivem/kit-vue'
+```
+
+## Usage
+
+```ts
+import { signMessage } from '@ivem/kit'
+
+const signature = await signMessage(config, { message: 'hello iost' })
+```
+
+## Parameters
+
+- `config: Config`
+- `parameters: { message: string | object; account?: string }`
+
+## Return Type
+
+- `Promise<unknown>`
+
+## Examples
+
+```ts
+const signature = await signMessage(config, {
+  message: { type: 'login', nonce: '123' },
+})
+```
+
+## Related
+
+- [useSignMessage (React)](/react/hooks/useSignMessage)
+- [useSignMessage (Vue)](/vue/composables/useSignMessage)

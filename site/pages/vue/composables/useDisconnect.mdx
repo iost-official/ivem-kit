@@ -1,0 +1,32 @@
+# useDisconnect
+
+## Usage
+
+```ts
+import { useDisconnect } from '@ivem/kit-vue'
+
+const disconnect = useDisconnect()
+await disconnect.mutateAsync()
+```
+
+## Parameters
+
+- None
+
+## Return Type
+
+- `mutate() => void`
+- `mutateAsync() => Promise<void>`
+- `isPending: Ref<boolean>`
+- `error: Ref<Error | null>`
+
+## Examples
+
+```ts
+await disconnect.mutateAsync()
+```
+
+## Related
+
+- [disconnect (Core)](/core/actions/disconnect)
+- [useDisconnect (React)](/react/hooks/useDisconnect)

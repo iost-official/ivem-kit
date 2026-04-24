@@ -1,0 +1,42 @@
+# Actions Overview
+
+Core actions are framework-agnostic APIs from `@ivem/kit`.
+
+## Usage
+
+```ts
+import { connect, sendTransaction } from '@ivem/kit'
+
+await connect(config)
+await sendTransaction(config, {
+  to: 'receiver',
+  amount: '1.00000000',
+  memo: 'Payment from app',
+})
+```
+
+## Parameters
+
+All actions accept `config` as the first argument.
+
+## Return Type
+
+Each action returns a typed value or promise result based on its behavior.
+
+## Examples
+
+- [connect](/core/actions/connect)
+- [reconnect](/core/actions/reconnect)
+- [disconnect](/core/actions/disconnect)
+- [getAccount](/core/actions/getAccount)
+- [getChainId](/core/actions/getChainId)
+- [signMessage](/core/actions/signMessage)
+- [sendTransaction](/core/actions/sendTransaction)
+- [writeContract](/core/actions/writeContract)
+- [callContract](/core/actions/callContract)
+- [waitForTransactionReceipt](/core/actions/waitForTransactionReceipt)
+
+## Related
+
+- [React Hooks](/react/hooks)
+- [Vue Composables](/vue/composables)

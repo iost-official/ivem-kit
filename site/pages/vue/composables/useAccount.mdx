@@ -1,0 +1,30 @@
+# useAccount
+
+## Usage
+
+```ts
+import { useAccount } from '@ivem/kit-vue'
+
+const account = useAccount()
+```
+
+## Parameters
+
+- None
+
+## Return Type
+
+- `Ref<GetAccountReturnType>`
+
+## Examples
+
+```ts
+if (account.value.isConnected) {
+  console.log(account.value.address)
+}
+```
+
+## Related
+
+- [getAccount (Core)](/core/actions/getAccount)
+- [useAccount (React)](/react/hooks/useAccount)

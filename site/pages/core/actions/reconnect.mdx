@@ -1,0 +1,37 @@
+# reconnect
+
+## Environment Imports
+
+```ts
+import { reconnect } from '@ivem/kit'
+import { useReconnect } from '@ivem/kit-react'
+import { useReconnect } from '@ivem/kit-vue'
+```
+
+## Usage
+
+```ts
+import { reconnect } from '@ivem/kit'
+
+const session = await reconnect(config)
+```
+
+## Parameters
+
+- `config: Config`
+
+## Return Type
+
+- `Promise<{ accounts: readonly string[]; chainId: string } | null>`
+
+## Examples
+
+```ts
+const restored = await reconnect(config)
+if (!restored) console.log('No authorized session')
+```
+
+## Related
+
+- [useReconnect (React)](/react/hooks/useReconnect)
+- [useReconnect (Vue)](/vue/composables/useReconnect)

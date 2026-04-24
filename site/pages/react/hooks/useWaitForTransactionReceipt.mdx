@@ -1,0 +1,47 @@
+# useWaitForTransactionReceipt
+
+## Usage
+
+```tsx
+import { useSendTransaction, useWaitForTransactionReceipt } from '@ivem/kit-react'
+
+const sendTransaction = useSendTransaction()
+const { data: receipt, isLoading } = useWaitForTransactionReceipt({
+  hash: sendTransaction.data?.hash,
+})
+
+await sendTransaction.mutateAsync({ to: 'receiver_account', amount: '1.00000000' })
+```
+
+## Parameters
+
+- `hash?: string`
+- `retryCount?: number`
+- `retryDelay?: number`
+- `timeout?: number`
+- `enabled?: boolean`
+
+## Return Type
+
+- `data: TxReceipt | undefined`
+- `error: Error | null`
+- `isLoading: boolean`
+- `isSuccess: boolean`
+- `isError: boolean`
+- `refetch: () => Promise<unknown>`
+
+## Examples
+
+```tsx
+const { data: receipt } = useWaitForTransactionReceipt({
+  hash: sendTransaction.data?.hash,
+  enabled: Boolean(sendTransaction.data?.hash),
+})
+
+console.log(receipt?.status_code)
+```
+
+## Related
+
+- [waitForTransactionReceipt (Core)](/core/actions/waitForTransactionReceipt)
+- [useWaitForTransactionReceipt (Vue)](/vue/composables/useWaitForTransactionReceipt)

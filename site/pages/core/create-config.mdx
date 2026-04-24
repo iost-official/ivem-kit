@@ -1,0 +1,39 @@
+# createConfig
+
+`createConfig` is the central state container for connection status, accounts, and chain settings across core, React, and Vue integrations.
+
+```ts
+import { createConfig, iwallet, mainnet } from '@ivem/kit'
+
+const config = createConfig({
+  chains: [mainnet],
+  connector: iwallet(),
+  storage: null,
+  ssr: false,
+})
+```
+
+## Core-Only Usage
+
+`@ivem/kit` can be used standalone without React or Vue.
+
+```ts
+import { createConfig, iwallet, connect, getAccount, mainnet } from '@ivem/kit'
+
+const config = createConfig({
+  chains: [mainnet],
+  connector: iwallet(),
+})
+
+await connect(config)
+const account = getAccount(config)
+```
+
+## Parameters
+
+- `chains`: supported IOST chains.
+- `connector`: wallet connector (recommended: `iwallet()`).
+- `storage`: persistence storage, pass `null` to disable persistence.
+- `ssr`: skip persisted-store hydration and prevent React/Vue integrations from auto-applying `initialState` or calling `reconnect` during SSR-oriented startup.
+
+`testnet` is still exported for compatibility, but as of 2026-03-11 the public IOST testnet is unavailable.

@@ -1,0 +1,19 @@
+{
+  "name": "site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vocs dev --host 127.0.0.1 --port 5174",
+    "build": "vocs build",
+    "preview": "vocs preview"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.39",
+    "@tailwindcss/vite": "^4.2.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.2.1",
+    "vite": "7.3.2",
+    "vocs": "^1.4.1"
+  }
+}

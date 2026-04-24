@@ -1,0 +1,46 @@
+# getAccount
+
+## Environment Imports
+
+```ts
+import { getAccount } from '@ivem/kit'
+import { useAccount } from '@ivem/kit-react'
+import { useAccount } from '@ivem/kit-vue'
+```
+
+## Usage
+
+```ts
+import { getAccount } from '@ivem/kit'
+
+const account = getAccount(config)
+```
+
+## Parameters
+
+- `config: Config`
+
+## Return Type
+
+- `{`
+- `  address?: string`
+- `  addresses: readonly string[]`
+- `  chainId: string`
+- `  status: 'connected' | 'connecting' | 'disconnected' | 'reconnecting'`
+- `  isConnected: boolean`
+- `  isConnecting: boolean`
+- `  isDisconnected: boolean`
+- `  isReconnecting: boolean`
+- `}`
+
+## Examples
+
+```ts
+const account = getAccount(config)
+if (account.isConnected) console.log(account.address)
+```
+
+## Related
+
+- [useAccount (React)](/react/hooks/useAccount)
+- [useAccount (Vue)](/vue/composables/useAccount)

@@ -1,0 +1,31 @@
+# useChainId
+
+## Usage
+
+```tsx
+import { useChainId } from '@ivem/kit-react'
+
+const chainId = useChainId()
+```
+
+## Parameters
+
+- None
+
+## Return Type
+
+- `string`
+
+## Examples
+
+```tsx
+function CurrentChain() {
+  const chainId = useChainId()
+  return <span>{chainId}</span>
+}
+```
+
+## Related
+
+- [getChainId (Core)](/core/actions/getChainId)
+- [useChainId (Vue)](/vue/composables/useChainId)

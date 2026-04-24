@@ -1,0 +1,38 @@
+# connect
+
+## Environment Imports
+
+```ts
+import { connect } from '@ivem/kit'
+import { useConnect } from '@ivem/kit-react'
+import { useConnect } from '@ivem/kit-vue'
+```
+
+## Usage
+
+```ts
+import { connect } from '@ivem/kit'
+
+await connect(config)
+```
+
+## Parameters
+
+- `config: Config`
+- `parameters?: undefined`
+
+## Return Type
+
+- `Promise<{ accounts: readonly string[]; chainId: string }>`
+
+## Examples
+
+```ts
+const result = await connect(config)
+console.log(result.accounts, result.chainId)
+```
+
+## Related
+
+- [useConnect (React)](/react/hooks/useConnect)
+- [useConnect (Vue)](/vue/composables/useConnect)

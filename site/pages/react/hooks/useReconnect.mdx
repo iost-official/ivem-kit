@@ -1,0 +1,34 @@
+# useReconnect
+
+## Usage
+
+```tsx
+import { useReconnect } from '@ivem/kit-react'
+
+const reconnect = useReconnect()
+await reconnect.mutateAsync()
+```
+
+## Parameters
+
+- None
+
+## Return Type
+
+- `mutate() => void`
+- `mutateAsync() => Promise<{ accounts: readonly string[]; chainId: string } | null>`
+- `isPending: boolean`
+- `error: Error | null`
+
+## Examples
+
+```tsx
+useEffect(() => {
+  reconnect.mutate()
+}, [])
+```
+
+## Related
+
+- [reconnect (Core)](/core/actions/reconnect)
+- [useReconnect (Vue)](/vue/composables/useReconnect)

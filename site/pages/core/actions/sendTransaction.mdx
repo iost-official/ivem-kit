@@ -1,0 +1,44 @@
+# sendTransaction
+
+## Environment Imports
+
+```ts
+import { sendTransaction } from '@ivem/kit'
+import { useSendTransaction } from '@ivem/kit-react'
+import { useSendTransaction } from '@ivem/kit-vue'
+```
+
+## Usage
+
+```ts
+import { sendTransaction } from '@ivem/kit'
+
+const result = await sendTransaction(config, {
+  to: 'receiver_account',
+  amount: '1.00000000',
+  memo: 'from Ivem Kit',
+})
+```
+
+## Parameters
+
+- `config: Config`
+- `parameters: { token?: string; from?: string; to: string; amount: string; memo?: string }`
+
+## Return Type
+
+- `Promise<{ hash: string }>`
+
+## Examples
+
+```ts
+const { hash } = await sendTransaction(config, {
+  to: 'receiver_account',
+  amount: '1.00000000',
+})
+```
+
+## Related
+
+- [useSendTransaction (React)](/react/hooks/useSendTransaction)
+- [useSendTransaction (Vue)](/vue/composables/useSendTransaction)

@@ -1,0 +1,39 @@
+# useAccount
+
+## Usage
+
+```tsx
+import { useAccount } from '@ivem/kit-react'
+
+const account = useAccount()
+```
+
+## Parameters
+
+- None
+
+## Return Type
+
+- `address?: string`
+- `addresses: readonly string[]`
+- `chainId: string`
+- `status: 'connected' | 'connecting' | 'disconnected' | 'reconnecting'`
+- `isConnected: boolean`
+- `isConnecting: boolean`
+- `isDisconnected: boolean`
+- `isReconnecting: boolean`
+
+## Examples
+
+```tsx
+function AccountStatus() {
+  const account = useAccount()
+  if (!account.isConnected) return <p>Disconnected</p>
+  return <p>{account.address}</p>
+}
+```
+
+## Related
+
+- [getAccount (Core)](/core/actions/getAccount)
+- [useAccount (Vue)](/vue/composables/useAccount)

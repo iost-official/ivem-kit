@@ -132,14 +132,14 @@ function normalizeToCallContractTx(params: any, defaultAccount?: string) {
 }
 
 function createProviderRequest(provider: IWalletProvider, defaultAccount?: string) {
-  return async (method: string, payload?: any) => {
-    const rawParams = payload?.params ?? payload;
+  return async (args: { method: string; params?: any }) => {
+    const rawParams = args.params;
     // iWallet injected provider currently exposes `callContract` (not `writeContract`).
     // Normalize ivem wallet actions to wallet-supported method names.
     const normalizedMethod =
-      method === "writeContract" || method === "callContract"
+      args.method === "writeContract" || args.method === "callContract"
         ? "callContract"
-        : method;
+        : args.method;
 
     const params =
       normalizedMethod === "callContract"

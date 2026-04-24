@@ -1,6 +1,6 @@
 {
   "name": "@ivem/kit-vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vue composables for IOST blockchain",
   "repository": {
     "type": "git",

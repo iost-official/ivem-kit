@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  @apply m-0 min-h-screen bg-[#050505] text-slate-200 font-sans antialiased;
+}
+
+#root, main {
+  @apply mx-auto w-full max-w-5xl p-4 md:p-8;
+}
+
+header {
+  @apply mb-8;
+}
+
+h1 {
+  @apply text-2xl font-semibold tracking-tight text-white;
+}
+
+header p {
+  @apply mt-2 text-sm text-slate-400;
+}
+
+.demo-shell, .shell {
+  @apply grid gap-6;
+}
+
+.card {
+  @apply rounded-xl border border-slate-800 bg-[#0A0A0A] p-6 shadow-sm;
+}
+
+.card h2 {
+  @apply mb-5 text-xs font-bold tracking-widest text-slate-500 uppercase;
+}
+
+.kv {
+  @apply grid grid-cols-[130px_1fr] gap-x-4 gap-y-3 text-sm;
+}
+
+.kv div:nth-child(odd) {
+  @apply text-slate-400;
+}
+
+.kv div:nth-child(even) {
+  @apply font-medium text-slate-200;
+}
+
+.row {
+  @apply mt-5 flex flex-wrap gap-3;
+}
+
+.form-grid {
+  @apply mt-4 grid grid-cols-1 gap-4 md:grid-cols-2;
+}
+
+label {
+  @apply grid gap-2 text-[11px] font-bold tracking-widest text-slate-500 uppercase;
+}
+
+.full {
+  @apply md:col-span-2;
+}
+
+input,
+textarea {
+  @apply w-full rounded-lg border border-slate-800 bg-[#050505] px-3 py-2 text-sm text-slate-200 outline-none transition placeholder:text-slate-600 focus:border-slate-600 focus:ring-1 focus:ring-slate-600;
+  font-family: var(--font-mono);
+}
+
+button {
+  @apply rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-700 hover:text-white disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-slate-800;
+}
+
+.banner {
+  @apply grid gap-1.5 rounded-lg border px-4 py-3 text-sm;
+}
+
+.banner-warning {
+  @apply border-amber-900/50 bg-amber-950/20 text-amber-200/80;
+}
+
+.banner-warning strong {
+  @apply text-amber-500;
+}
+
+.banner-error {
+  @apply sticky bottom-4 z-50 border-rose-900/50 bg-[#110505]/95 backdrop-blur-xl text-rose-200/80 shadow-2xl shadow-black/80;
+}
+
+.banner-error strong {
+  @apply text-rose-500;
+}
+
+.result {
+  @apply mt-5 overflow-auto rounded-lg border border-slate-800 bg-[#050505] p-4 text-xs text-slate-300 font-mono leading-relaxed;
+}
+
+.event-log {
+  @apply mt-5 max-h-72 overflow-auto rounded-lg border border-slate-800 bg-[#050505];
+}
+
+.event-item {
+  @apply grid grid-cols-[90px_140px_1fr] gap-3 border-b border-slate-800/60 px-4 py-3 text-xs font-mono items-center;
+}
+
+.event-item:last-child {
+  @apply border-b-0;
+}
+
+.event-time {
+  @apply text-slate-500;
+}
+
+.event-name {
+  @apply font-medium text-sky-400/80;
+}
+
+.event-item code {
+  @apply text-slate-300;
+}
+
+.muted {
+  @apply p-4 text-xs text-slate-500 font-mono;
+}

@@ -1,0 +1,27 @@
+{
+  "name": "next",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "next dev -p 3003",
+    "build": "next build",
+    "start": "next start -p 3003"
+  },
+  "dependencies": {
+    "@ivem/core": ">=0.0.1",
+    "@tanstack/react-query": "^5.90.2",
+    "@ivem/kit-react": "workspace:*",
+    "next": "16.2.4",
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5.7.2"
+  }
+}

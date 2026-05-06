@@ -5,10 +5,15 @@
   "scripts": {
     "dev": "pnpm -r --parallel --filter \"./packages/**\" run dev",
     "build": "pnpm -r --filter \"./packages/**\" run build",
+    "build:playgrounds": "pnpm -r --filter \"./playgrounds/**\" run build",
+    "dev:playground:core": "pnpm --filter vite-core dev",
+    "dev:playground:react": "pnpm --filter vite-react dev",
+    "dev:playground:vue": "pnpm --filter vite-vue dev",
+    "dev:playground:next": "pnpm --filter next dev",
     "docs:dev": "pnpm --filter site dev",
     "docs:build": "pnpm --filter site build",
     "docs:preview": "pnpm --filter site preview"
   },
   "license": "MIT",
-  "packageManager": "pnpm@10.17.0"
+  "packageManager": "pnpm@10.33.3"
 }

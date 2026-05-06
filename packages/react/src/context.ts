@@ -35,19 +35,22 @@ export function IvemProvider(props: IvemProviderProps) {
   const reconnectAttempted = useRef(false);
 
   useEffect(() => {
-    // Apply the provided initial state when not in SSR mode.
-    if (initialState && !config._internal.ssr) {
-      config.setState(initialState);
+    async function mount() {
+      if (initialState && !config._internal.ssr) {
+        config.setState(initialState);
+      }
+
+      if (config._internal.ssr) {
+        await config._internal.store.persist?.rehydrate?.();
+      }
+
+      if (reconnectOnMount && !reconnectAttempted.current) {
+        reconnectAttempted.current = true;
+        reconnect(config).catch(() => {});
+      }
     }
 
-    // Skip reconnect during SSR.
-    if (config._internal.ssr) return;
-
-    // Reconnect once on mount when enabled.
-    if (reconnectOnMount && !reconnectAttempted.current) {
-      reconnectAttempted.current = true;
-      reconnect(config).catch(() => {});
-    }
+    mount().catch(() => {});
   }, [config, initialState, reconnectOnMount]);
 
   return createElement(

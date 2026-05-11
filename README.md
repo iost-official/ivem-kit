@@ -1,27 +1,19 @@
 # ivem-kit
 
-Minimal pnpm monorepo for the `ivem-kit` package family.
+> Reactive toolkit for building IOST dApps — with first-class React & Vue support.
 
-## Packages
+## What's inside?
 
-- `@ivem/kit`
-- `@ivem/kit-react`
-- `@ivem/kit-vue`
+| Package | Description |
+| --- | --- |
+| [`@ivem/kit`](https://www.npmjs.com/package/@ivem/kit) | Framework-agnostic core — config, connectors & actions |
+| [`@ivem/kit-react`](https://www.npmjs.com/package/@ivem/kit-react) | React hooks (`useAccount`, `useConnect`, `useSendTransaction` …) |
+| [`@ivem/kit-vue`](https://www.npmjs.com/package/@ivem/kit-vue) | Vue composables with the same API surface |
 
-## Install
+## Documentation
 
-```bash
-pnpm install
-```
+[Read the docs →](https://kit.ivem.sh)
 
-## Development
+## License
 
-```bash
-pnpm dev
-```
-
-## Build
-
-```bash
-pnpm build
-```
+[MIT](./LICENSE)

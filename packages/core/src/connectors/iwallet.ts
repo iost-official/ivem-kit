@@ -74,15 +74,11 @@ export function iwallet(
           };
         };
 
-        // iost-iwallet-pro uses both accountChanged and accountsChanged.
-        // Bind both variants for compatibility.
-        const unbindAccountChanged = bind("accountChanged", handleAccountsChanged);
         const unbindAccountsChanged = bind(
           "accountsChanged",
           handleAccountsChanged
         );
         cleanupAccountsChanged = () => {
-          unbindAccountChanged();
           unbindAccountsChanged();
         };
         cleanupNetworkChanged = bind("networkChanged", handleNetworkChanged);

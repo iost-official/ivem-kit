@@ -267,7 +267,6 @@ function checkWallet() {
   if (!provider?.isIWalletJS) return;
 
   const events = [
-    "accountChanged",
     "accountsChanged",
     "networkChanged",
     "pending",

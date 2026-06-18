@@ -136,7 +136,6 @@ function DemoPage() {
     if (!walletInstalled || !provider?.isIWalletJS) return;
 
     const events = [
-      "accountChanged",
       "accountsChanged",
       "networkChanged",
       "pending",

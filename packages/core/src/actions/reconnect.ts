@@ -1,4 +1,5 @@
 import type { Config } from "../createConfig.js";
+import { IWALLET_PROVIDER_TIMEOUT } from "../utils/getIWalletProvider.js";
 
 export type ReconnectReturnType = {
   accounts: readonly string[];
@@ -7,6 +8,7 @@ export type ReconnectReturnType = {
 
 export async function reconnect(config: Config): Promise<ReconnectReturnType> {
   const connector = config.connector;
+  await connector.getProvider({ timeout: IWALLET_PROVIDER_TIMEOUT });
   const isAuthorized = await connector.isAuthorized();
 
   if (!isAuthorized) {

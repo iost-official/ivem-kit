@@ -8,6 +8,7 @@ import {
   mainnet,
   sendTransaction,
   signMessage,
+  watchIWalletProvider,
   writeContract,
 } from "@ivem/kit";
 import "./style.css";
@@ -113,6 +114,9 @@ const setResult = (id: string, value: unknown) => {
 
 config.subscribe((state) => state, updateStatus);
 updateStatus();
+watchIWalletProvider(() => {
+  updateStatus();
+});
 
 $("connect").addEventListener("click", async () => {
   setError("");

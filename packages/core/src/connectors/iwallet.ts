@@ -5,6 +5,12 @@ import type {
   IWalletProvider,
 } from "../types/index.js";
 import { createEmitter } from "../utils/emitter.js";
+import {
+  IWALLET_INITIALIZED_EVENT,
+  IWALLET_PROVIDER_TIMEOUT,
+  getIWalletProvider,
+  waitForIWalletProvider,
+} from "../utils/getIWalletProvider.js";
 
 export type IWalletParameters = {
   getProvider?: () => IWalletProvider | undefined;
@@ -34,6 +40,11 @@ export function iwallet(
   return (config) => {
     const emitter = createEmitter<ConnectorEventMap>();
     const configuredChains = (config?.chains ?? []) as readonly Chain[];
+    let providerListenersBound = false;
+    let pendingInitializedListener: (() => void) | undefined;
+
+    const resolveProvider = () =>
+      getIWalletProvider(parameters.getProvider);
 
     return {
       id: "iwallet",
@@ -43,49 +54,74 @@ export function iwallet(
       emitter,
 
       async setup() {
-        const provider = await this.getProvider();
-        if (!provider) return;
+        const bindProvider = (provider: IWalletProvider) => {
+          if (providerListenersBound) return;
+          providerListenersBound = true;
+          pendingInitializedListener?.();
+          pendingInitializedListener = undefined;
 
-        const handleAccountsChanged = (accounts: unknown) => {
-          const normalizedAccounts = normalizeAccounts(accounts);
+          const handleAccountsChanged = (accounts: unknown) => {
+            const normalizedAccounts = normalizeAccounts(accounts);
 
-          if (normalizedAccounts.length === 0) {
-            emitter.emit("disconnect", undefined);
-            return;
-          }
+            if (normalizedAccounts.length === 0) {
+              emitter.emit("disconnect", undefined);
+              return;
+            }
 
-          emitter.emit("change", { accounts: normalizedAccounts });
-        };
-
-        const handleNetworkChanged = async (chainLike: unknown) => {
-          const chainId =
-            String(chainLike ?? "").startsWith("iost-") === true
-              ? String(chainLike)
-              : networkToChainId(chainLike);
-          const accounts = await this.getAccounts();
-          emitter.emit("change", { accounts, chainId });
-        };
-
-        const bind = (event: string, handler: (...args: any[]) => void) => {
-          provider.on(event, handler);
-          return () => {
-            provider.off(event, handler);
-            provider.removeListener(event, handler);
+            emitter.emit("change", { accounts: normalizedAccounts });
           };
+
+          const handleNetworkChanged = async (chainLike: unknown) => {
+            const chainId =
+              String(chainLike ?? "").startsWith("iost-") === true
+                ? String(chainLike)
+                : networkToChainId(chainLike);
+            const accounts = await this.getAccounts();
+            emitter.emit("change", { accounts, chainId });
+          };
+
+          const bind = (event: string, handler: (...args: any[]) => void) => {
+            provider.on(event, handler);
+            return () => {
+              provider.off(event, handler);
+              provider.removeListener(event, handler);
+            };
+          };
+
+          const unbindAccountsChanged = bind(
+            "accountsChanged",
+            handleAccountsChanged
+          );
+          cleanupAccountsChanged = () => {
+            unbindAccountsChanged();
+          };
+          cleanupNetworkChanged = bind("networkChanged", handleNetworkChanged);
         };
 
-        const unbindAccountsChanged = bind(
-          "accountsChanged",
-          handleAccountsChanged
-        );
-        cleanupAccountsChanged = () => {
-          unbindAccountsChanged();
+        const provider = await this.getProvider({
+          timeout: IWALLET_PROVIDER_TIMEOUT,
+        });
+        if (provider) {
+          bindProvider(provider);
+          return;
+        }
+
+        if (typeof window === "undefined" || pendingInitializedListener) return;
+
+        const onInitialized = () => {
+          const next = resolveProvider();
+          if (next) bindProvider(next);
         };
-        cleanupNetworkChanged = bind("networkChanged", handleNetworkChanged);
+        window.addEventListener(IWALLET_INITIALIZED_EVENT, onInitialized);
+        pendingInitializedListener = () => {
+          window.removeEventListener(IWALLET_INITIALIZED_EVENT, onInitialized);
+        };
       },
 
       async connect() {
-        const provider = await this.getProvider();
+        const provider = await this.getProvider({
+          timeout: IWALLET_PROVIDER_TIMEOUT,
+        });
         if (!provider) throw new Error("IWalletJS not found");
 
         await provider.request({ method: "connect" });
@@ -110,6 +146,7 @@ export function iwallet(
           cleanupAccountsChanged = undefined;
           cleanupNetworkChanged?.();
           cleanupNetworkChanged = undefined;
+          providerListenersBound = false;
 
           emitter.emit("disconnect", undefined);
         }
@@ -143,18 +180,15 @@ export function iwallet(
         return normalizedChainId;
       },
 
-      async getProvider() {
-        if (parameters.getProvider) {
-          const provider = parameters.getProvider();
-          if (provider?.isIWalletJS) return provider;
-          return undefined;
+      async getProvider(options?: { timeout?: number }) {
+        const timeout = options?.timeout ?? 0;
+        if (timeout > 0) {
+          return waitForIWalletProvider({
+            timeout,
+            getProvider: resolveProvider,
+          });
         }
-
-        if (typeof window === "undefined") return undefined;
-
-        const provider = window.IWalletJS;
-        if (!provider?.isIWalletJS) return undefined;
-        return provider;
+        return resolveProvider();
       },
 
       async isAuthorized() {
@@ -188,6 +222,7 @@ export function iwallet(
         cleanupAccountsChanged = undefined;
         cleanupNetworkChanged?.();
         cleanupNetworkChanged = undefined;
+        providerListenersBound = false;
 
         emitter.emit("disconnect", undefined);
       },

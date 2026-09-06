@@ -11,6 +11,27 @@
 - `sendTransaction`
 - `callContract`
 
+The extension injects `window.IWalletJS` asynchronously. After the provider is attached it dispatches `IWalletJS#initialized` on `window`. The connector waits for that event (with a short polling fallback) during `setup()`, `connect()`, and `reconnect()`.
+
+```ts
+import {
+  IWALLET_INITIALIZED_EVENT,
+  getIWalletProvider,
+  watchIWalletProvider,
+  waitForIWalletProvider,
+} from '@ivem/kit'
+
+getIWalletProvider()
+await waitForIWalletProvider()
+watchIWalletProvider((provider) => {
+  console.log(Boolean(provider))
+})
+
+window.addEventListener(IWALLET_INITIALIZED_EVENT, () => {
+  console.log('iWallet Pro is ready')
+})
+```
+
 ## Custom Provider Injection
 
 ```ts

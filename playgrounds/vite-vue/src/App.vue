@@ -150,6 +150,7 @@ import {
   useReconnect,
   useSendTransaction,
   useSignMessage,
+  watchIWalletProvider,
 } from "@ivem/kit-vue";
 
 const publicClient = createPublicClient({
@@ -295,13 +296,17 @@ function checkWallet() {
   }
 }
 
+let stopWatchWallet: (() => void) | undefined;
+
 onMounted(() => {
-  checkWallet();
-  window.addEventListener("focus", checkWallet);
+  stopWatchWallet = watchIWalletProvider((provider) => {
+    walletInstalled.value = Boolean(provider);
+    checkWallet();
+  });
 });
 
 onUnmounted(() => {
-  window.removeEventListener("focus", checkWallet);
+  stopWatchWallet?.();
   for (const unbind of unbindWalletEvents) unbind();
   unbindWalletEvents = [];
 });

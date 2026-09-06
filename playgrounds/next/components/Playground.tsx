@@ -18,6 +18,7 @@ import {
   useSendTransaction,
   useSignMessage,
   useWaitForTransactionReceipt,
+  watchIWalletProvider,
 } from "@ivem/kit-react";
 
 const config = createConfig({
@@ -122,13 +123,9 @@ function DemoPage() {
   }, []);
 
   useEffect(() => {
-    const checkWallet = () => {
-      setWalletInstalled(Boolean(window.IWalletJS?.isIWalletJS));
-    };
-
-    checkWallet();
-    window.addEventListener("focus", checkWallet);
-    return () => window.removeEventListener("focus", checkWallet);
+    return watchIWalletProvider((provider) => {
+      setWalletInstalled(Boolean(provider));
+    });
   }, []);
 
   useEffect(() => {

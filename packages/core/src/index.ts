@@ -10,6 +10,16 @@ export {
 
 // Export connectors.
 export { iwallet, type IWalletParameters } from "./connectors/iwallet.js";
+export {
+  IWALLET_INITIALIZED_EVENT,
+  IWALLET_PROVIDER_TIMEOUT,
+  getIWalletProvider,
+  waitForIWalletProvider,
+  watchIWalletProvider,
+  type WaitForIWalletProviderParameters,
+  type WatchIWalletProviderParameters,
+  type GetIWalletProviderFn,
+} from "./utils/getIWalletProvider.js";
 
 // Export chain definitions.
 export { mainnet, testnet } from "./chains/index.js";

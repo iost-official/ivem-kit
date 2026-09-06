@@ -54,7 +54,9 @@ export type Connector = {
   disconnect(): Promise<void>;
   getAccounts(): Promise<readonly string[]>;
   getChainId(): Promise<string>;
-  getProvider(): Promise<IWalletProvider | undefined>;
+  getProvider(parameters?: {
+    timeout?: number;
+  }): Promise<IWalletProvider | undefined>;
   isAuthorized(): Promise<boolean>;
   onAccountsChanged?(accounts: string[]): void;
   onChainChanged?(chainId: string): void;
